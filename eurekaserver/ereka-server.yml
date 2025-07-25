@@ -1,12 +1,28 @@
+# server:
+#   port: 8070						# ereka default port 8761
+# eureka:
+#   instance:
+#     hostname: localhost
+#   client:
+#     registerWithEureka: false
+#     fetchRegistry: false
+#     serviceUrl:
+#       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#   server:
+#     waitTimeInMsWhenSyncEmpty: 5
+
 server:
-  port: 8070						# ereka default port 8761
+  port: 8070
+
 eureka:
   instance:
-    hostname: localhost
+    # 컨테이너 이름 사용 (도커 네트워크에서의 고정 DNS 이름)
+    hostname: eureka-server
+    preferIpAddress: true
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://eureka-server:8070/eureka/
   server:
     waitTimeInMsWhenSyncEmpty: 5
